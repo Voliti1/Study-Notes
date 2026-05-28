@@ -54,3 +54,10 @@ if (document.readyState === "loading") {
 } else {
     run_initializers();
 }
+
+// Re-initialize collapsible menus on dynamic AJAX page changes
+if (typeof gitbook !== 'undefined') {
+    gitbook.events.bind('page.change', function() {
+        run_initializers();
+    });
+}

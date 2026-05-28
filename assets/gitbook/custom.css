@@ -303,16 +303,19 @@ html, body, .book {
     border-right: 1px solid var(--border) !important;
 }
 .book-summary ul.summary li a, 
+.book-summary ul.summary li a:visited,
 .book-summary ul.summary li span {
     color: var(--text) !important;
     background: transparent !important;
 }
-.book-summary ul.summary li.active>a {
+.book-summary ul.summary li.active>a,
+.book-summary ul.summary li.active>a:visited {
     color: var(--links) !important;
     background: var(--bg-secondary) !important;
     font-weight: bold !important;
 }
-.book-summary ul.summary li a:hover {
+.book-summary ul.summary li a:hover,
+.book-summary ul.summary li a:hover:visited {
     color: var(--links) !important;
     background: var(--bg-secondary) !important;
     text-decoration: none !important;

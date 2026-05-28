@@ -45,19 +45,25 @@
 
 <script type="text/javascript">
   (function() {
-    const button = document.querySelector('.theme-toggle');
-    if (!button) return;
-
     function updateIcon(theme) {
+      const button = document.querySelector('.theme-toggle');
+      if (!button) return;
       button.setAttribute('aria-pressed', theme === 'dark' ? 'true' : 'false');
-      button.querySelector('.icon-sun').style.display = theme === 'dark' ? 'inline-block' : 'none';
-      button.querySelector('.icon-moon').style.display = theme === 'dark' ? 'none' : 'inline-block';
+      const sun = button.querySelector('.icon-sun');
+      const moon = button.querySelector('.icon-moon');
+      if (sun) sun.style.display = theme === 'dark' ? 'inline-block' : 'none';
+      if (moon) moon.style.display = theme === 'dark' ? 'none' : 'inline-block';
     }
 
+    // Set initial icon state
     const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
     updateIcon(currentTheme);
 
-    button.addEventListener('click', function (e) {
+    // Event delegation on document so click works even after AJAX page loads
+    document.addEventListener('click', function (e) {
+      const button = e.target.closest('.theme-toggle');
+      if (!button) return;
+
       e.preventDefault();
       const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
       const next = currentTheme === 'dark' ? 'light' : 'dark';
@@ -71,5 +77,13 @@
         document.documentElement.classList.remove('transition');
       }, 250);
     });
+
+    // Update icon when GitBook changes pages (since header is replaced)
+    if (typeof gitbook !== 'undefined') {
+      gitbook.events.bind('page.change', function() {
+        const theme = document.documentElement.getAttribute('data-theme') || 'light';
+        updateIcon(theme);
+      });
+    }
   })();
 </script>

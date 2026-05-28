@@ -224,7 +224,7 @@ f.close()
 ```
 
 ## with 문 사용
-#### - close를 호출하지 않아도 with문 종료 시 열린 파일 f가 닫힘
+### - close를 호출하지 않아도 with문 종료 시 열린 파일 f가 닫힘
 
 ```python
 with open("difficult.txt", 'w') as f:
