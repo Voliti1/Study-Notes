@@ -1,5 +1,6 @@
 ---
 layout: post
+date: 2026-05-04
 title: 01_04. 리스트와 튜플
 author: Voliti
 ---

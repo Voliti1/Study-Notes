@@ -1,5 +1,6 @@
 ---
 layout: post
+date: 2026-05-02
 title: 01_02. 시퀀스 자료형
 author: Voliti
 ---

@@ -1,10 +1,9 @@
 ---
 layout: post
+date: 2026-05-06
 title: 02. 제어문과 함수
 author: Voliti
 ---
-
-# 02. 제어문과 함수
 ## 조건문 <hr>
 ### - if문
 주어진 조건이 True일 경우에만 특정 코드 실행

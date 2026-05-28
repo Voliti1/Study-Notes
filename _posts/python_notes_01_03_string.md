@@ -1,5 +1,6 @@
 ---
 layout: post
+date: 2026-05-03
 title: 01_03. 문자열
 author: Voliti
 ---

@@ -381,10 +381,11 @@ html, body, .book {
 }
 .sidebar-brand a {
     display: block !important;
-    padding: 10px 15px !important;
+    padding: 20px 15px !important;
     font-family: inherit !important;
-    font-size: 17px !important; /* Slightly larger than standard menu text */
+    font-size: 21px !important; /* Enlarge by 4px */
     font-weight: bold !important;
+    text-align: center !important; /* Center alignment */
     color: var(--text) !important;
     background: transparent !important;
     text-decoration: none !important;

@@ -1,5 +1,6 @@
 ---
 layout: post
+date: 2026-05-01
 title: 01_01. 숫자형과 연산자
 author: Voliti
 ---

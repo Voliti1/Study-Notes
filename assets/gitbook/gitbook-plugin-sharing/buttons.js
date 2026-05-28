@@ -82,7 +82,7 @@ require(['gitbook', 'jquery'], function(gitbook, $) {
         });
 
         // Create main button with dropdown
-        if (menu.length > 0) {
+        if (false) {
             gitbook.toolbar.createButton({
                 icon: 'fa fa-share-alt',
                 label: 'Share',

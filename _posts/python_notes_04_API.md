@@ -1,10 +1,9 @@
 ---
 layout: post
+date: 2026-05-08
 title: 04. API
 author: Voliti
 ---
-
-# 04. API
 ## API란?
 API(Application Programming Interface) : 서로 다른 소프트웨어 시스템 간에 정보를 주고받거나 기능을 사용할 수 있도록 도와주는 서비스
 <br>* 요청하면 필요한 데이터를 보내주는 자동화된 시스템

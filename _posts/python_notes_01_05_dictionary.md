@@ -1,5 +1,6 @@
 ---
 layout: post
+date: 2026-05-05
 title: 01_05. 딕셔너리
 author: Voliti
 ---
