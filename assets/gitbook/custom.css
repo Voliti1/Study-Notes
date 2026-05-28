@@ -377,21 +377,22 @@ html, body, .book {
 
 /* Sidebar Brand Link Style */
 .sidebar-brand {
-    padding: 20px 15px;
-    text-align: center;
-    border-bottom: 1px solid var(--border);
+    border-bottom: 1px solid var(--border) !important;
 }
 .sidebar-brand a {
-    font-family: var(--font-sans);
-    font-size: 1.3rem;
-    font-weight: 700;
-    color: var(--headings) !important;
-    text-decoration: none;
-    letter-spacing: -0.02em;
-    transition: color 0.2s ease;
+    display: block !important;
+    padding: 10px 15px !important;
+    font-family: inherit !important;
+    font-size: 17px !important; /* Slightly larger than standard menu text */
+    font-weight: bold !important;
+    color: var(--text) !important;
+    background: transparent !important;
+    text-decoration: none !important;
+    transition: background-color 0.2s ease, color 0.2s ease;
 }
 .sidebar-brand a:hover {
     color: var(--links) !important;
+    background: var(--bg-secondary) !important;
 }
 
 /* Collapsible TOC Styles */
