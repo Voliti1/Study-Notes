@@ -2,7 +2,6 @@
 layout: post
 title: 02. 제어문과 함수
 author: Voliti
-date: 2026-05-02
 ---
 
 # 02. 제어문과 함수
@@ -124,5 +123,3 @@ print(result)
 3. 모듈(Module) : .py 파일(클래스, 함수, 변수들을 모은 파일)
 4. 패키지(Package) : 모듈들을 모아놓은 폴더(__init.py__ 포함)
 5. 라이브러리(Libarary) : 여러 패키지와 모듈을 모아놓은 거대한 기능 꾸러미
-
-
