@@ -3,9 +3,9 @@ import re
 
 files = [
     '_site/sql/index.html', 
-    '_site/2026-05-09-sql_notes.html', 
+    '_site/2026-05-09-sql_notes_01.html', 
+    '_site/2026-05-14-sql_notes_06.html',
     '_site/2026-05-01-python_notes_01_01_number.html',
-    '_site/2026-05-02-python_notes_01_02_sequence.html',
     '_site/index.html'
 ]
 
@@ -35,7 +35,7 @@ for f in files:
         # 3. Check some posts' data-levels
         posts_levels = re.findall(r'<li class="chapter[^"]*"[^>]*data-level="([^"]*)"[^>]*data-path="([^"]*)"', content)
         print('  Some posts levels:')
-        for level, path in posts_levels[:12]:
+        for level, path in posts_levels:
             if 'python_notes' in path or 'sql_notes' in path:
                 print(f'    Path: {path.split("/")[-1]} -> data-level: {level}')
         print('-' * 40)
