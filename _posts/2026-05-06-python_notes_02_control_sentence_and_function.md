@@ -3,6 +3,7 @@ layout: post
 date: 2026-05-06
 title: 02. 제어문과 함수
 author: Voliti
+category_name: python
 ---
 ## 조건문
 ### - if문

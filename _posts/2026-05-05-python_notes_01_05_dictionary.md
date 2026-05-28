@@ -3,6 +3,7 @@ layout: post
 date: 2026-05-05
 title: 01_05. 딕셔너리
 author: Voliti
+category_name: python
 ---
 ### 딕셔너리 자료형
 사전, key와 value를 한 쌍으로 가지는 자료형

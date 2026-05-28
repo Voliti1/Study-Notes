@@ -3,6 +3,7 @@ layout: post
 date: 2026-05-07
 title: 03. 파일읽고쓰기
 author: Voliti
+category_name: python
 ---
 ## 파일 읽고 쓰기
 - 파일이 없으면 파일을 생성하면서 열고, 파일이 있으면 해당 파일을 열음
