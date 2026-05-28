@@ -2,7 +2,6 @@
 layout: post
 title: 04. API
 author: Voliti
-date: 2026-05-04
 ---
 
 # 04. API

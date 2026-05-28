@@ -2,7 +2,6 @@
 layout: post
 title: 03. 파일읽고쓰기
 author: Voliti
-date: 2026-05-03
 ---
 
 # 03. 파일읽고쓰기
