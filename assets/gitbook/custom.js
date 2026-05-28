@@ -1,5 +1,4 @@
 // Enable footnote link support for pages with width < 1240.
-//
 function bind_footnote_links() {
     if ($(document).width() > 1240) {
         return;
@@ -19,11 +18,39 @@ function bind_footnote_links() {
     }
 }
 
-if (document.readyState === "loading") {
-    // Loading hasn't finished yet
-    document.addEventListener("DOMContentLoaded", bind_footnote_links);
-} else {
-    // `DOMContentLoaded` has already fired
-    bind_footnote_links();
+// Toggle collapsible TOC headings in sidebar
+function init_collapsible_toc() {
+    const tocItems = document.querySelectorAll('.book-summary ul.summary li.chapter ul li');
+    tocItems.forEach(li => {
+        const subUl = li.querySelector('ul');
+        if (subUl) {
+            const textContent = li.textContent || '';
+            if (textContent.includes('관련 함수')) {
+                li.classList.add('collapsible-parent');
+                
+                // If active or contains active, expand it
+                const hasActiveChild = li.classList.contains('active') || li.querySelector('.active');
+                if (hasActiveChild) {
+                    li.classList.add('expanded');
+                }
+
+                // Clicking toggles expansion
+                li.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    li.classList.toggle('expanded');
+                });
+            }
+        }
+    });
 }
 
+function run_initializers() {
+    bind_footnote_links();
+    init_collapsible_toc();
+}
+
+if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", run_initializers);
+} else {
+    run_initializers();
+}

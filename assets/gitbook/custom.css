@@ -375,34 +375,77 @@ html, body, .book {
     display: none !important;
 }
 
-/* Theme Toggle Button Style */
-.theme-toggle {
-  color: var(--text);
-  background-color: transparent;
-  padding: 8px;
-  cursor: pointer;
-  border: none;
-  outline: none;
-  position: fixed;
-  right: 20px;
-  top: 10px;
-  z-index: 10000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  background: var(--bg-secondary);
-  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-  transition: background-color 0.2s ease, color 0.2s ease;
+/* Sidebar Brand Link Style */
+.sidebar-brand {
+    padding: 20px 15px;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
 }
-.theme-toggle:hover {
-  color: var(--links);
-  background: var(--bg-subtle);
+.sidebar-brand a {
+    font-family: var(--font-sans);
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--headings) !important;
+    text-decoration: none;
+    letter-spacing: -0.02em;
+    transition: color 0.2s ease;
 }
-.theme-toggle svg {
-  width: 20px;
-  height: 20px;
+.sidebar-brand a:hover {
+    color: var(--links) !important;
 }
+
+/* Collapsible TOC Styles */
+.book-summary ul.summary li.chapter ul li.collapsible-parent ul {
+    display: none !important; /* Hide subheadings under 관련 함수 by default */
+}
+.book-summary ul.summary li.chapter ul li.collapsible-parent.expanded ul {
+    display: block !important; /* Show subheadings when expanded */
+}
+.book-summary ul.summary li.chapter ul li.collapsible-parent {
+    position: relative;
+}
+.book-summary ul.summary li.chapter ul li.collapsible-parent > a {
+    padding-right: 35px !important;
+}
+.book-summary ul.summary li.chapter ul li.collapsible-parent::after {
+    content: "▼";
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%) rotate(-90deg);
+    cursor: pointer;
+    font-size: 8px;
+    color: var(--text-secondary);
+    transition: transform 0.2s ease;
+    pointer-events: none; /* Let clicks pass to the li container */
+}
+.book-summary ul.summary li.chapter ul li.collapsible-parent.expanded::after {
+    transform: translateY(-50%) rotate(0deg);
+}
+
+/* Theme Toggle Button Style in Header Bar */
+.book-header .theme-toggle {
+    color: var(--text) !important;
+    background: transparent !important;
+    border: none !important;
+    padding: 0 15px !important;
+    line-height: 50px !important;
+    height: 50px !important;
+    font-size: 16px !important;
+    cursor: pointer;
+    text-decoration: none !important;
+    display: inline-block !important;
+    float: right;
+}
+.book-header .theme-toggle:hover {
+    color: var(--links) !important;
+    background: transparent !important;
+}
+.book-header .theme-toggle i {
+    font-size: 16px !important;
+    line-height: 50px !important;
+}
+
 /* Smooth theme transition */
 html.transition,
 html.transition *,
