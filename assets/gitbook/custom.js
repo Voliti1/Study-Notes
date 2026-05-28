@@ -44,9 +44,24 @@ function init_collapsible_toc() {
     });
 }
 
+function init_collapsible_category() {
+    const categories = document.querySelectorAll('.book-summary ul.summary li.collapsible-category');
+    categories.forEach(li => {
+        // Toggle when clicking the area (like the arrow)
+        li.addEventListener('click', function(e) {
+            // Only toggle if clicked outside the <a> link itself
+            if (e.target.tagName !== 'A') {
+                e.stopPropagation();
+                li.classList.toggle('expanded');
+            }
+        });
+    });
+}
+
 function run_initializers() {
     bind_footnote_links();
     init_collapsible_toc();
+    init_collapsible_category();
 }
 
 if (document.readyState === "loading") {
