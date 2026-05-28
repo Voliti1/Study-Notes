@@ -261,3 +261,153 @@ pre:has(code.language-mermaid[data-processed="true"]) {
     --c-danger-title: #c00;
     --font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
 }
+
+/* Moonwalk Theme Variable Definition */
+:root {
+  --bg: #fcfcfc;
+  --bg-secondary: #f1f2f4;
+  --bg-subtle: #f6f7f8;
+  --headings: #0f172a;
+  --text: #2b2f36;
+  --text-secondary: #5b6470;
+  --links: #4f46e5;
+  --highlight: #FFECB2;
+  --code-text: #9D174D;
+  --border: rgba(15, 23, 42, 0.08);
+  --border-subtle: rgba(15, 23, 42, 0.05);
+}
+
+html[data-theme="dark"] {
+  --headings: #e6edf3;
+  --links: #91A7FF;
+  --highlight: #41C7C7;
+  --bg: #15161d;
+  --bg-secondary: #23242f;
+  --bg-subtle: #1c1d26;
+  --text: #c4ccd6;
+  --text-secondary: #8b94a3;
+  --code-text: #91A7FF;
+  --border: rgba(255, 255, 255, 0.08);
+  --border-subtle: rgba(255, 255, 255, 0.05);
+}
+
+/* Base Body Styles */
+html, body, .book {
+    background-color: var(--bg) !important;
+    color: var(--text) !important;
+}
+
+/* Sidebar Custom Styling */
+.book-summary {
+    background: var(--bg-subtle) !important;
+    border-right: 1px solid var(--border) !important;
+}
+.book-summary ul.summary li a, 
+.book-summary ul.summary li span {
+    color: var(--text) !important;
+    background: transparent !important;
+}
+.book-summary ul.summary li.active>a {
+    color: var(--links) !important;
+    background: var(--bg-secondary) !important;
+    font-weight: bold !important;
+}
+.book-summary ul.summary li a:hover {
+    color: var(--links) !important;
+    background: var(--bg-secondary) !important;
+    text-decoration: none !important;
+}
+.book-summary ul.summary li.divider {
+    background: var(--border) !important;
+    height: 1px !important;
+    margin: 7px 0 !important;
+}
+#book-search-input {
+    background: var(--bg-subtle) !important;
+    border-bottom: 1px solid var(--border) !important;
+}
+#book-search-input input {
+    background: var(--bg) !important;
+    color: var(--text) !important;
+    border: 1px solid var(--border) !important;
+}
+
+/* Header & Body Elements */
+.book-body {
+    background: var(--bg) !important;
+    color: var(--text) !important;
+}
+.book-header {
+    background: var(--bg) !important;
+    color: var(--text) !important;
+    border-bottom: 1px solid var(--border) !important;
+}
+.book-header h1 a {
+    color: var(--headings) !important;
+}
+.book-header h1 a:hover {
+    color: var(--links) !important;
+}
+.markdown-section {
+    color: var(--text) !important;
+}
+.markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4, .markdown-section h5, .markdown-section h6 {
+    color: var(--headings) !important;
+}
+.markdown-section a {
+    color: var(--links) !important;
+}
+.markdown-section a:hover {
+    text-decoration: underline !important;
+}
+.markdown-section code {
+    background-color: var(--bg-subtle) !important;
+    color: var(--code-text) !important;
+    border: 1px solid var(--border-subtle) !important;
+}
+.markdown-section pre {
+    background: var(--bg-subtle) !important;
+    border: 1px solid var(--border) !important;
+}
+
+/* Hide Gitbook default fontsettings toggle */
+.font-settings, [class*="font-settings"] {
+    display: none !important;
+}
+
+/* Theme Toggle Button Style */
+.theme-toggle {
+  color: var(--text);
+  background-color: transparent;
+  padding: 8px;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  position: fixed;
+  right: 20px;
+  top: 10px;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--bg-secondary);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+.theme-toggle:hover {
+  color: var(--links);
+  background: var(--bg-subtle);
+}
+.theme-toggle svg {
+  width: 20px;
+  height: 20px;
+}
+/* Smooth theme transition */
+html.transition,
+html.transition *,
+html.transition *:before,
+html.transition *:after {
+    transition: all 250ms !important;
+    transition-delay: 0 !important;
+}
