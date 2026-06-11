@@ -9,7 +9,7 @@ version:          1.0
 gitbook_version:  3.2.3
 
 url:              'https://voliti1.github.io'
-baseurl:          '/Study-Notes2'
+baseurl:          '/Study-Notes'
 rss:              RSS
 
 # bootstrap: use the remote theme for the site itself
