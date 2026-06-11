@@ -18,6 +18,17 @@ for f in files:
         
         print(f'Checking {f}:')
         
+        # Check for incorrect "/Study-Notes2" references
+        incorrect_refs = re.findall(r'href="[^"]*Study-Notes2[^"]*"|src="[^"]*Study-Notes2[^"]*"', content)
+        if incorrect_refs:
+            print(f'  [WARNING] Found incorrect Study-Notes2 references: {incorrect_refs}')
+        else:
+            print('  [OK] No Study-Notes2 references found.')
+            
+        # Check for correct "/Study-Notes" references
+        correct_refs = re.findall(r'href="[^"]*Study-Notes[^"]*"|src="[^"]*Study-Notes[^"]*"', content)
+        print(f'  [INFO] Found {len(correct_refs)} Study-Notes references (showing first 3): {correct_refs[:3]}')
+        
         # 1. Check Python category LI
         py_match = re.search(r'<li class="([^"]*collapsible-category[^"]*)"[^>]*data-level="([^"]*)"[^>]*data-path="[^"]*python/"', content)
         if py_match:
