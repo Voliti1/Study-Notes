@@ -1,0 +1,158 @@
+=== CELL 0 (markdown) ===
+# 로컬 데이터 로드
+=== CELL 1 (code) ===
+import pandas as pd
+study = pd.read_csv('./머신러닝실습용자료/공부시간과시험점수.csv',encoding='cp949')
+study
+
+# 이름 -> 의미없음
+# 공부시간 -> feature
+# 시험점수 -> Target(예측결과)
+  --- OUTPUT 0 (execute_result) ---
+       이름  공부시간  시험점수
+0     이원재  15.0  85.0
+1     맹승주  14.5  86.5
+2     안미경  14.0  86.0
+3     서진수  13.5  85.5
+4     황경인  13.0  85.0
+5     신운무  12.0  83.0
+6      권율  12.0  85.0
+7      강준  11.0  82.0
+8    신사임당  11.0  83.0
+9     문무왕  10.5  82.0
+10    김지희  10.5  81.5
+11    임기승  10.0  82.0
+12    강감찬  10.0  81.0
+13  광개토대왕   9.5  78.0
+14    이세혁   9.3  77.4
+15    전우치   9.0  77.0
+16    이순신   9.0  76.0
+17    정진교   8.5  75.5
+18   계백장군   8.5  76.0
+19    왕광환   8.4  75.5
+20    홍길동   8.2  75.0
+21    곽재우   8.0  74.5
+22    김유신   7.5  74.0
+23    이승우   7.5  73.5
+24    일지매   7.0  73.0
+=== CELL 2 (markdown) ===
+# 공통 실습 코드
+=== CELL 3 (code) ===
+# data, target 정의
+data = study['공부시간']
+target = study['시험점수']
+
+# 산점도 그리기
+import matplotlib.pyplot as plt
+plt.plot(data,target,'o')
+plt.show()
+  --- OUTPUT 0 (display_data) ---
+<Figure size 640x480 with 1 Axes>
+=== CELL 4 (code) ===
+import numpy as np
+
+# train, test 데이터 나누기 위해 numpy로 변경
+data = study['공부시간'].to_numpy()
+target = study['시험점수'].to_numpy()
+
+# 훈련 세트와 테스트 세트로 나눕니다.
+from sklearn.model_selection import train_test_split
+훈련용_data, 테스트용_data, 훈련용_target, 테스트용_target = train_test_split(
+    data, target, test_size = 0.2, random_state = 40)
+=== CELL 5 (code) ===
+# shape 확인
+print(훈련용_data.shape)
+  --- OUTPUT 0 (stream) ---
+(20,)
+
+=== CELL 6 (code) ===
+# data 전체 확인
+print(훈련용_data)
+  --- OUTPUT 0 (stream) ---
+[13.5  8.  14.  10.   8.5 13.  11.   9.   7.5  8.2 15.  10.5 10.5  7.5
+ 10.  14.5  8.5 12.  11.  12. ]
+
+=== CELL 7 (code) ===
+# reshape 함수에 -1을 넣으면, rows은 자동으로 입력해달라는 뜻
+# 즉, column을 1개로 내가 정했으니, 남은 데이터는 알아서 row에 잘 넣어주세요.
+훈련용_data = 훈련용_data.reshape(-1,1)
+테스트용_data = 테스트용_data.reshape(-1,1)
+=== CELL 8 (code) ===
+# shape 확인
+print(훈련용_data.shape)
+  --- OUTPUT 0 (stream) ---
+(20, 1)
+
+=== CELL 9 (code) ===
+# data 전체 확인
+print(훈련용_data)
+  --- OUTPUT 0 (stream) ---
+[[13.5]
+ [ 8. ]
+ [14. ]
+ [10. ]
+ [ 8.5]
+ [13. ]
+ [11. ]
+ [ 9. ]
+ [ 7.5]
+ [ 8.2]
+ [15. ]
+ [10.5]
+ [10.5]
+ [ 7.5]
+ [10. ]
+ [14.5]
+ [ 8.5]
+ [12. ]
+ [11. ]
+ [12. ]]
+
+=== CELL 10 (markdown) ===
+
+=== CELL 11 (code) ===
+# 선형회귀모델 학습
+from sklearn.linear_model import LinearRegression
+lr = LinearRegression()
+lr.fit(훈련용_data, 훈련용_target)
+  --- OUTPUT 0 (execute_result) ---
+LinearRegression()
+=== CELL 12 (code) ===
+# 점수 확인(lr.score는 결정계수R2에 대한 정확도를 의미합니다.)
+print(lr.score(훈련용_data , 훈련용_target))
+print(lr.score(테스트용_data , 테스트용_target))
+  --- OUTPUT 0 (stream) ---
+0.8869114576908868
+0.83676625848856
+
+=== CELL 13 (code) ===
+# 16이라는 값을 넣었을 때 예상 결과값 확인
+lr.predict([[16]])
+  --- OUTPUT 0 (execute_result) ---
+array([90.12423029])
+=== CELL 14 (code) ===
+# 회귀계수 확인
+print(lr.coef_ , lr.intercept_)
+=== CELL 15 (code) ===
+import matplotlib.pyplot as plt
+plt.scatter(훈련용_data , 훈련용_target)
+plt.plot( [5,18], [5*lr.coef_ +lr.intercept_ ,
+                    18*lr.coef_ + lr.intercept_])
+plt.scatter(16 , 90 ,marker="^")
+plt.show()
+=== CELL 16 (markdown) ===
+## 다항회귀분석 적용
+=== CELL 17 (code) ===
+# 다항회귀분석 적용
+import numpy as np
+훈련용_data_poly = np.column_stack(( 훈련용_data ** 2, 훈련용_data))
+테스트용_data_poly = np.column_stack((테스트용_data ** 2 , 테스트용_data))
+
+lr = LinearRegression()
+lr.fit(훈련용_data_poly , 훈련용_target)
+lr.score(테스트용_data_poly , 테스트용_target)
+=== CELL 18 (code) ===
+lr.predict([[16**2,16]])
+=== CELL 19 (code) ===
+print(lr.score(훈련용_data_poly , 훈련용_target))
+print(lr.score(테스트용_data_poly , 테스트용_target))
