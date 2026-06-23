@@ -4,6 +4,7 @@ date: 2026-05-02
 title: 01_02. 시퀀스 자료형
 author: Voliti
 category_name: python
+subcategory: basic
 ---
 ### 시퀀스 자료형
 #### 각각의 요소들이 연속적으로 이어진 자료형

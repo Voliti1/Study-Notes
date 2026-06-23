@@ -4,6 +4,7 @@ date: 2026-05-21
 title: 11. K-Means 군집화 (K-Means Clustering)
 author: Voliti
 category_name: python
+subcategory: ai
 ---
 
 **비지도학습(Unsupervised Learning)**은 정답 타겟 라벨($Y$)이 제공되지 않은 채 데이터 자체의 특성(Feature)과 내부 구조를 파악해 스스로 학습하는 방식임. 대표적인 비지도학습 알고리즘인 **K-Means 군집화(Clustering)**는 데이터를 서로 유사한 성격의 $K$개 그룹(군집)으로 결합하여 묶어주는 통계 기법임.

@@ -4,6 +4,7 @@ date: 2026-05-20
 title: 10. 앙상블과 랜덤 포레스트 (Ensemble & Random Forest)
 author: Voliti
 category_name: python
+subcategory: ai
 ---
 
 단일 결정트리 모델은 구조가 직관적이고 해석이 쉬우나 과대적합(Overfitting)에 매우 취약하다는 단점이 있음. 이를 해결하기 위해 여러 개의 독립적인 모델(결정트리)을 결합하여 개별 예측 결과를 평균내거나 다수결로 종합하는 기법인 **앙상블 학습(Ensemble Learning)**을 도입함. 그 중 가장 널리 쓰이는 앙상블 알고리즘이 **랜덤 포레스트(Random Forest)**임.

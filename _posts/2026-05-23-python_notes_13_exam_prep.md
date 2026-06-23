@@ -4,6 +4,7 @@ date: 2026-05-23
 title: 13. 시험대비 (Exam Preparation)
 author: Voliti
 category_name: python
+subcategory: ai
 ---
 
 본 정리글은 머신러닝 실기 시험 또는 평가를 대비하여 **데이터 전처리, 파생변수 생성, 변수 선택, 모델 학습, 모델 저장 및 실시간 예측 파이프라인**을 구축하는 일련의 과정을 정리한 내용입니다. 

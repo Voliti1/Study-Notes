@@ -4,6 +4,7 @@ date: 2026-05-04
 title: 01_04. 리스트와 튜플
 author: Voliti
 category_name: python
+subcategory: basic
 ---
 ### 리스트 자료형(list)
 모든 종류의 자료형을 자유롭게 묶어서 사용할 수 있는 자료형의 묶음

@@ -4,6 +4,7 @@ date: 2026-05-17
 title: 07. KNN 분류 (K-Nearest Neighbors)
 author: Voliti
 category_name: python
+subcategory: ai
 ---
 
 KNN(K-Nearest Neighbors, K-최근접 이웃)은 가장 간단하고 직관적인 **인스턴스 기반 지도학습(Instance-based Learning)** 알고리즘임. 새로운 데이터가 들어왔을 때, 기존 데이터 중에서 거리상 가장 가까운 $K$개의 이웃을 찾아 그 이웃들의 다수결(Majority Vote)로 새로운 데이터의 클래스를 결정함.

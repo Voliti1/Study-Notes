@@ -51,219 +51,256 @@
 
             <li class="divider"></li>
 
-            {% if site.ordered_collections %}
-                {% for label in site.ordered_collections %}
-                    {% assign collection = site.collections | where: "label", label | first %}
-                    {% assign collection_index = forloop.index | plus: 2 %}
-                    <!-- <p>{{ collection.label }}</p> -->
-                    {% if collection.output %}
-                        {% if collection.label == "posts" %}
-                            {% assign reversed_posts = site[collection.label] | reverse %}
-                            {% assign python_posts = reversed_posts | where: "category_name", "python" %}
-                            {% assign sql_posts = reversed_posts | where: "category_name", "sql" %}
-                            
-                            <!-- Check if Python category or any of its posts is active -->
-                            {% assign is_python_active = false %}
-                            {% if page.url == "/python/" or page.url == "/python" or page.url == "/python.html" %}
-                                {% assign is_python_active = true %}
-                            {% endif %}
-                            {% for post in python_posts %}
+            {% if site.collections %}
+                {% assign reversed_posts = site.posts | reverse %}
+                {% assign python_posts = reversed_posts | where: "category_name", "python" %}
+                {% assign python_basic_posts = python_posts | where: "subcategory", "basic" %}
+                {% assign python_bigdata_posts = python_posts | where: "subcategory", "bigdata" %}
+                {% assign python_ai_posts = python_posts | where: "subcategory", "ai" %}
+                {% assign c_posts = reversed_posts | where: "category_name", "c" %}
+                {% assign csharp_posts = reversed_posts | where: "category_name", "csharp" %}
+                {% assign java_posts = reversed_posts | where: "category_name", "java" %}
+                {% assign sql_posts = reversed_posts | where: "category_name", "sql" %}
+                {% assign se_posts = reversed_posts | where: "category_name", "se" %}
+                
+                <!-- Check if Python category or any of its posts is active -->
+                {% assign is_python_active = false %}
+                {% if page.url == "/python/" or page.url == "/python" or page.url == "/python.html" %}
+                    {% assign is_python_active = true %}
+                {% endif %}
+                {% for post in python_posts %}
+                    {% if page.url == post.url %}
+                        {% assign is_python_active = true %}
+                    {% endif %}
+                {% endfor %}
+
+                <li class="chapter collapsible-category {% if is_python_active %}active expanded{% endif %}" data-level="1.2" data-path="{{site.baseurl}}/python/">
+                    <a href="{{site.baseurl}}/python/" onclick="pageScrollToTop(this)">
+                        파이썬
+                    </a>
+                    <ul>
+                        {% if python_basic_posts.size > 0 %}
+                            <li class="header" style="padding: 10px 15px 5px; font-size: 11px; font-weight: bold; color: #777; text-transform: uppercase;">기본 문법</li>
+                            {% for post in python_basic_posts %}
                                 {% if page.url == post.url %}
-                                    {% assign is_python_active = true %}
-                                {% endif %}
-                            {% endfor %}
-
-                            <li class="chapter collapsible-category {% if is_python_active %}active expanded{% endif %}" data-level="1.2" data-path="{{site.baseurl}}/python/">
-                                <a href="{{site.baseurl}}/python/" onclick="pageScrollToTop(this)">
-                                    파이썬
-                                </a>
-                                <ul>
-                                    {% for post in python_posts %}
-                                        {% if page.url == post.url %}
-                                        <li class="chapter active" data-level="1.2.{{ forloop.index }}" data-path="{{site.baseurl}}{{post.url}}">
-                                        {% else %}
-                                        <li class="chapter" data-level="1.2.{{ forloop.index }}" data-path="{{site.baseurl}}{{post.url}}">
-                                        {% endif %}
-                                            <a href="{{site.baseurl}}{{post.url}}" onclick="pageScrollToTop(this)">
-                                                {{ post.title | escape }}
-                                            </a>
-                                            {% if site.toc.enabled %}
-                                                {% if page.url == post.url %}
-                                                    {% include toc.html html=content h_min=site.toc.h_min h_max=site.toc.h_max %}
-                                                {% endif %}
-                                            {% endif %}
-                                        </li>
-                                    {% endfor %}
-                                </ul>
-                            </li>
-
-                            <li class="divider"></li>
-
-                            <!-- Check if SQL category or any of its posts is active -->
-                            {% assign is_sql_active = false %}
-                            {% if page.url == "/sql/" or page.url == "/sql" or page.url == "/sql.html" %}
-                                {% assign is_sql_active = true %}
-                            {% endif %}
-                            {% for post in sql_posts %}
-                                {% if page.url == post.url %}
-                                    {% assign is_sql_active = true %}
-                                {% endif %}
-                            {% endfor %}
-
-                            <li class="chapter collapsible-category {% if is_sql_active %}active expanded{% endif %}" data-level="1.3" data-path="{{site.baseurl}}/sql/">
-                                <a href="{{site.baseurl}}/sql/" onclick="pageScrollToTop(this)">
-                                    SQL
-                                </a>
-                                <ul>
-                                    {% for post in sql_posts %}
-                                        {% if page.url == post.url %}
-                                        <li class="chapter active" data-level="1.3.{{ forloop.index }}" data-path="{{site.baseurl}}{{post.url}}">
-                                        {% else %}
-                                        <li class="chapter" data-level="1.3.{{ forloop.index }}" data-path="{{site.baseurl}}{{post.url}}">
-                                        {% endif %}
-                                            <a href="{{site.baseurl}}{{post.url}}" onclick="pageScrollToTop(this)">
-                                                {{ post.title | escape }}
-                                            </a>
-                                            {% if site.toc.enabled %}
-                                                {% if page.url == post.url %}
-                                                    {% include toc.html html=content h_min=site.toc.h_min h_max=site.toc.h_max %}
-                                                {% endif %}
-                                            {% endif %}
-                                        </li>
-                                    {% endfor %}
-                                </ul>
-                            </li>
-                        {% else %}
-                            {% assign reversed_posts = site[collection.label] %}
-                            {% for post in reversed_posts %}
-                                {% if page.url == post.url %}
-                                <li class="chapter active" data-level="1.{{ collection_index }}.{{ forloop.index }}" data-path="{{site.baseurl}}{{post.url}}">
+                                <li class="chapter active" data-level="1.2.1.{{ forloop.index }}" data-path="{{site.baseurl}}{{post.url}}">
                                 {% else %}
-                                <li class="chapter" data-level="1.{{ collection_index }}.{{ forloop.index }}" data-path="{{site.baseurl}}{{post.url}}">
+                                <li class="chapter" data-level="1.2.1.{{ forloop.index }}" data-path="{{site.baseurl}}{{post.url}}">
                                 {% endif %}
-                                    <a href="{{site.baseurl}}{{post.url}}" onclick="pageScrollToTop(this)">
-                                        {{ post.title | escape }}
-                                    </a>
-                                    {% if site.toc.enabled %}
-                                        {% if page.url == post.url %}
-                                            {% include toc.html html=content h_min=site.toc.h_min h_max=site.toc.h_max %}
-                                        {% endif %}
+                                    <a href="{{site.baseurl}}{{post.url}}" onclick="pageScrollToTop(this)">{{ post.title | escape }}</a>
+                                    {% if site.toc.enabled and page.url == post.url %}
+                                        {% include toc.html html=content h_min=site.toc.h_min h_max=site.toc.h_max %}
                                     {% endif %}
                                 </li>
                             {% endfor %}
                         {% endif %}
-
-                        {% if reversed_posts.size > 0 %}
-                            <li class="divider"></li>
-                        {% endif %}
-                    {% endif %}
-                {% endfor %}
-            {% else %}
-                {% for collection in site.collections %}
-                    {% assign collection_index = forloop.index | plus: 2 %}
-                    <!-- <p>{{ collection.label }}</p> -->
-                    {% if collection.output %}
-                        {% if collection.label == "posts" %}
-                            {% assign reversed_posts = site[collection.label] | reverse %}
-                            {% assign python_posts = reversed_posts | where: "category_name", "python" %}
-                            {% assign sql_posts = reversed_posts | where: "category_name", "sql" %}
-                            
-                            <!-- Check if Python category or any of its posts is active -->
-                            {% assign is_python_active = false %}
-                            {% if page.url == "/python/" or page.url == "/python" or page.url == "/python.html" %}
-                                {% assign is_python_active = true %}
-                            {% endif %}
-                            {% for post in python_posts %}
+                        {% if python_bigdata_posts.size > 0 %}
+                            <li class="header" style="padding: 10px 15px 5px; font-size: 11px; font-weight: bold; color: #777; text-transform: uppercase;">빅데이터 분석</li>
+                            {% for post in python_bigdata_posts %}
                                 {% if page.url == post.url %}
-                                    {% assign is_python_active = true %}
-                                {% endif %}
-                            {% endfor %}
-
-                            <li class="chapter collapsible-category {% if is_python_active %}active expanded{% endif %}" data-level="1.2" data-path="{{site.baseurl}}/python/">
-                                <a href="{{site.baseurl}}/python/" onclick="pageScrollToTop(this)">
-                                    파이썬
-                                </a>
-                                <ul>
-                                    {% for post in python_posts %}
-                                        {% if page.url == post.url %}
-                                        <li class="chapter active" data-level="1.2.{{ forloop.index }}" data-path="{{site.baseurl}}{{post.url}}">
-                                        {% else %}
-                                        <li class="chapter" data-level="1.2.{{ forloop.index }}" data-path="{{site.baseurl}}{{post.url}}">
-                                        {% endif %}
-                                            <a href="{{site.baseurl}}{{post.url}}" onclick="pageScrollToTop(this)">
-                                                {{ post.title | escape }}
-                                            </a>
-                                            {% if site.toc.enabled %}
-                                                {% if page.url == post.url %}
-                                                    {% include toc.html html=content h_min=site.toc.h_min h_max=site.toc.h_max %}
-                                                {% endif %}
-                                            {% endif %}
-                                        </li>
-                                    {% endfor %}
-                                </ul>
-                            </li>
-
-                            <li class="divider"></li>
-
-                            <!-- Check if SQL category or any of its posts is active -->
-                            {% assign is_sql_active = false %}
-                            {% if page.url == "/sql/" or page.url == "/sql" or page.url == "/sql.html" %}
-                                {% assign is_sql_active = true %}
-                            {% endif %}
-                            {% for post in sql_posts %}
-                                {% if page.url == post.url %}
-                                    {% assign is_sql_active = true %}
-                                {% endif %}
-                            {% endfor %}
-
-                            <li class="chapter collapsible-category {% if is_sql_active %}active expanded{% endif %}" data-level="1.3" data-path="{{site.baseurl}}/sql/">
-                                <a href="{{site.baseurl}}/sql/" onclick="pageScrollToTop(this)">
-                                    SQL
-                                </a>
-                                <ul>
-                                    {% for post in sql_posts %}
-                                        {% if page.url == post.url %}
-                                        <li class="chapter active" data-level="1.3.{{ forloop.index }}" data-path="{{site.baseurl}}{{post.url}}">
-                                        {% else %}
-                                        <li class="chapter" data-level="1.3.{{ forloop.index }}" data-path="{{site.baseurl}}{{post.url}}">
-                                        {% endif %}
-                                            <a href="{{site.baseurl}}{{post.url}}" onclick="pageScrollToTop(this)">
-                                                {{ post.title | escape }}
-                                            </a>
-                                            {% if site.toc.enabled %}
-                                                {% if page.url == post.url %}
-                                                    {% include toc.html html=content h_min=site.toc.h_min h_max=site.toc.h_max %}
-                                                {% endif %}
-                                            {% endif %}
-                                        </li>
-                                    {% endfor %}
-                                </ul>
-                            </li>
-                        {% else %}
-                            {% assign reversed_posts = site[collection.label] %}
-                            {% for post in reversed_posts %}
-                                {% if page.url == post.url %}
-                                <li class="chapter active" data-level="1.{{ collection_index }}.{{ forloop.index }}" data-path="{{site.baseurl}}{{post.url}}">
+                                <li class="chapter active" data-level="1.2.2.{{ forloop.index }}" data-path="{{site.baseurl}}{{post.url}}">
                                 {% else %}
-                                <li class="chapter" data-level="1.{{ collection_index }}.{{ forloop.index }}" data-path="{{site.baseurl}}{{post.url}}">
+                                <li class="chapter" data-level="1.2.2.{{ forloop.index }}" data-path="{{site.baseurl}}{{post.url}}">
                                 {% endif %}
-                                    <a href="{{site.baseurl}}{{post.url}}" onclick="pageScrollToTop(this)">
-                                        {{ post.title | escape }}
-                                    </a>
-                                    {% if site.toc.enabled %}
-                                        {% if page.url == post.url %}
-                                            {% include toc.html html=content h_min=site.toc.h_min h_max=site.toc.h_max %}
-                                        {% endif %}
+                                    <a href="{{site.baseurl}}{{post.url}}" onclick="pageScrollToTop(this)">{{ post.title | escape }}</a>
+                                    {% if site.toc.enabled and page.url == post.url %}
+                                        {% include toc.html html=content h_min=site.toc.h_min h_max=site.toc.h_max %}
                                     {% endif %}
                                 </li>
                             {% endfor %}
                         {% endif %}
-
-                        {% if reversed_posts.size > 0 %}
-                            <li class="divider"></li>
+                        {% if python_ai_posts.size > 0 %}
+                            <li class="header" style="padding: 10px 15px 5px; font-size: 11px; font-weight: bold; color: #777; text-transform: uppercase;">AI 머신러닝</li>
+                            {% for post in python_ai_posts %}
+                                {% if page.url == post.url %}
+                                <li class="chapter active" data-level="1.2.3.{{ forloop.index }}" data-path="{{site.baseurl}}{{post.url}}">
+                                {% else %}
+                                <li class="chapter" data-level="1.2.3.{{ forloop.index }}" data-path="{{site.baseurl}}{{post.url}}">
+                                {% endif %}
+                                    <a href="{{site.baseurl}}{{post.url}}" onclick="pageScrollToTop(this)">{{ post.title | escape }}</a>
+                                    {% if site.toc.enabled and page.url == post.url %}
+                                        {% include toc.html html=content h_min=site.toc.h_min h_max=site.toc.h_max %}
+                                    {% endif %}
+                                </li>
+                            {% endfor %}
                         {% endif %}
+                    </ul>
+                </li>
+
+                <li class="divider"></li>
+
+                <!-- Check if C category or any of its posts is active -->
+                {% assign is_c_active = false %}
+                {% if page.url == "/c/" or page.url == "/c" or page.url == "/c.html" %}
+                    {% assign is_c_active = true %}
+                {% endif %}
+                {% for post in c_posts %}
+                    {% if page.url == post.url %}
+                        {% assign is_c_active = true %}
                     {% endif %}
                 {% endfor %}
+
+                <li class="chapter collapsible-category {% if is_c_active %}active expanded{% endif %}" data-level="1.3" data-path="{{site.baseurl}}/c/">
+                    <a href="{{site.baseurl}}/c/" onclick="pageScrollToTop(this)">
+                        C언어
+                    </a>
+                    <ul>
+                        {% for post in c_posts %}
+                            {% if page.url == post.url %}
+                            <li class="chapter active" data-level="1.3.{{ forloop.index }}" data-path="{{site.baseurl}}{{post.url}}">
+                            {% else %}
+                            <li class="chapter" data-level="1.3.{{ forloop.index }}" data-path="{{site.baseurl}}{{post.url}}">
+                            {% endif %}
+                                <a href="{{site.baseurl}}{{post.url}}" onclick="pageScrollToTop(this)">
+                                    {{ post.title | escape }}
+                                </a>
+                                {% if site.toc.enabled and page.url == post.url %}
+                                    {% include toc.html html=content h_min=site.toc.h_min h_max=site.toc.h_max %}
+                                {% endif %}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </li>
+
+                <li class="divider"></li>
+
+                <!-- Check if C# category or any of its posts is active -->
+                {% assign is_csharp_active = false %}
+                {% if page.url == "/csharp/" or page.url == "/csharp" or page.url == "/csharp.html" %}
+                    {% assign is_csharp_active = true %}
+                {% endif %}
+                {% for post in csharp_posts %}
+                    {% if page.url == post.url %}
+                        {% assign is_csharp_active = true %}
+                    {% endif %}
+                {% endfor %}
+
+                <li class="chapter collapsible-category {% if is_csharp_active %}active expanded{% endif %}" data-level="1.4" data-path="{{site.baseurl}}/csharp/">
+                    <a href="{{site.baseurl}}/csharp/" onclick="pageScrollToTop(this)">
+                        C# 장비제어
+                    </a>
+                    <ul>
+                        {% for post in csharp_posts %}
+                            {% if page.url == post.url %}
+                            <li class="chapter active" data-level="1.4.{{ forloop.index }}" data-path="{{site.baseurl}}{{post.url}}">
+                            {% else %}
+                            <li class="chapter" data-level="1.4.{{ forloop.index }}" data-path="{{site.baseurl}}{{post.url}}">
+                            {% endif %}
+                                <a href="{{site.baseurl}}{{post.url}}" onclick="pageScrollToTop(this)">
+                                    {{ post.title | escape }}
+                                </a>
+                                {% if site.toc.enabled and page.url == post.url %}
+                                    {% include toc.html html=content h_min=site.toc.h_min h_max=site.toc.h_max %}
+                                {% endif %}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </li>
+
+                <li class="divider"></li>
+
+                <!-- Check if JAVA category or any of its posts is active -->
+                {% assign is_java_active = false %}
+                {% if page.url == "/java/" or page.url == "/java" or page.url == "/java.html" %}
+                    {% assign is_java_active = true %}
+                {% endif %}
+                {% for post in java_posts %}
+                    {% if page.url == post.url %}
+                        {% assign is_java_active = true %}
+                    {% endif %}
+                {% endfor %}
+
+                <li class="chapter collapsible-category {% if is_java_active %}active expanded{% endif %}" data-level="1.5" data-path="{{site.baseurl}}/java/">
+                    <a href="{{site.baseurl}}/java/" onclick="pageScrollToTop(this)">
+                        JAVA
+                    </a>
+                    <ul>
+                        {% for post in java_posts %}
+                            {% if page.url == post.url %}
+                            <li class="chapter active" data-level="1.5.{{ forloop.index }}" data-path="{{site.baseurl}}{{post.url}}">
+                            {% else %}
+                            <li class="chapter" data-level="1.5.{{ forloop.index }}" data-path="{{site.baseurl}}{{post.url}}">
+                            {% endif %}
+                                <a href="{{site.baseurl}}{{post.url}}" onclick="pageScrollToTop(this)">
+                                    {{ post.title | escape }}
+                                </a>
+                                {% if site.toc.enabled and page.url == post.url %}
+                                    {% include toc.html html=content h_min=site.toc.h_min h_max=site.toc.h_max %}
+                                {% endif %}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </li>
+
+                <li class="divider"></li>
+
+                <!-- Check if SQL category or any of its posts is active -->
+                {% assign is_sql_active = false %}
+                {% if page.url == "/sql/" or page.url == "/sql" or page.url == "/sql.html" %}
+                    {% assign is_sql_active = true %}
+                {% endif %}
+                {% for post in sql_posts %}
+                    {% if page.url == post.url %}
+                        {% assign is_sql_active = true %}
+                    {% endif %}
+                {% endfor %}
+
+                <li class="chapter collapsible-category {% if is_sql_active %}active expanded{% endif %}" data-level="1.6" data-path="{{site.baseurl}}/sql/">
+                    <a href="{{site.baseurl}}/sql/" onclick="pageScrollToTop(this)">
+                        SQL
+                    </a>
+                    <ul>
+                        {% for post in sql_posts %}
+                            {% if page.url == post.url %}
+                            <li class="chapter active" data-level="1.6.{{ forloop.index }}" data-path="{{site.baseurl}}{{post.url}}">
+                            {% else %}
+                            <li class="chapter" data-level="1.6.{{ forloop.index }}" data-path="{{site.baseurl}}{{post.url}}">
+                            {% endif %}
+                                <a href="{{site.baseurl}}{{post.url}}" onclick="pageScrollToTop(this)">
+                                    {{ post.title | escape }}
+                                </a>
+                                {% if site.toc.enabled and page.url == post.url %}
+                                    {% include toc.html html=content h_min=site.toc.h_min h_max=site.toc.h_max %}
+                                {% endif %}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </li>
+
+                <li class="divider"></li>
+
+                <!-- Check if SE category or any of its posts is active -->
+                {% assign is_se_active = false %}
+                {% if page.url == "/se/" or page.url == "/se" or page.url == "/se.html" %}
+                    {% assign is_se_active = true %}
+                {% endif %}
+                {% for post in se_posts %}
+                    {% if page.url == post.url %}
+                        {% assign is_se_active = true %}
+                    {% endif %}
+                {% endfor %}
+
+                <li class="chapter collapsible-category {% if is_se_active %}active expanded{% endif %}" data-level="1.7" data-path="{{site.baseurl}}/se/">
+                    <a href="{{site.baseurl}}/se/" onclick="pageScrollToTop(this)">
+                        소프트웨어 공학
+                    </a>
+                    <ul>
+                        {% for post in se_posts %}
+                            {% if page.url == post.url %}
+                            <li class="chapter active" data-level="1.7.{{ forloop.index }}" data-path="{{site.baseurl}}{{post.url}}">
+                            {% else %}
+                            <li class="chapter" data-level="1.7.{{ forloop.index }}" data-path="{{site.baseurl}}{{post.url}}">
+                            {% endif %}
+                                <a href="{{site.baseurl}}{{post.url}}" onclick="pageScrollToTop(this)">
+                                    {{ post.title | escape }}
+                                </a>
+                                {% if site.toc.enabled and page.url == post.url %}
+                                    {% include toc.html html=content h_min=site.toc.h_min h_max=site.toc.h_max %}
+                                {% endif %}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </li>
             {% endif %}
         </ul>
     </nav>

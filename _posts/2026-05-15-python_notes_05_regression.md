@@ -4,6 +4,7 @@ date: 2026-05-15
 title: 05. 회귀분석 (Regression Analysis)
 author: Voliti
 category_name: python
+subcategory: ai
 ---
 
 회귀분석(Regression Analysis)이란 하나 또는 그 이상의 **독립변수(원인)**가 **종속변수(결과)**에 미치는 영향력을 분석하고, 이를 바탕으로 미래의 값을 예측하는 대표적인 통계 분석 방법

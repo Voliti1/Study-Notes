@@ -4,6 +4,7 @@ date: 2026-05-03
 title: 01_03. 문자열
 author: Voliti
 category_name: python
+subcategory: basic
 ---
 ### 문자열(String)
 - 문자들의 집합, 문자, 단어의 모임

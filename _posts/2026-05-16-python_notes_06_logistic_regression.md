@@ -4,6 +4,7 @@ date: 2026-05-16
 title: 06. 로지스틱 회귀분석 (Logistic Regression)
 author: Voliti
 category_name: python
+subcategory: ai
 ---
 
 로지스틱 회귀분석(Logistic Regression)은 이름은 회귀이지만 실제로는 **분류(Classification)** 알고리즘에 속함. 선형 회귀와 달리 종속변수가 범주형(예: 합격/불합격, 스팸/정상 등)일 때 사용하며, 출력값을 0과 1 사이의 확률값으로 변환하여 분류를 수행함.

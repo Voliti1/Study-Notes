@@ -4,6 +4,7 @@ date: 2026-05-22
 title: 12. DBSCAN 군집화 (DBSCAN Clustering)
 author: Voliti
 category_name: python
+subcategory: ai
 ---
 
 K-Means 군집 분석은 학습 속도가 빠르고 직관적이지만 **구형(Spherical) 형태의 단순 군집** 분포만 탐색할 수 있어 초승달 형태나 도넛 형태 등 기하학적 형태의 비선형적 군집 데이터를 해결하지 못하고 잘못 분할하는 한계가 있음. 이러한 한계를 보완하기 위해 밀도 분포(Density)를 기반으로 공간을 그룹화하는 **DBSCAN(Density-Based Spatial Clustering of Applications with Noise)** 알고리즘을 도입함.

@@ -4,6 +4,7 @@ date: 2026-05-18
 title: 08. K-Fold 교차검증 (K-Fold Cross Validation)
 author: Voliti
 category_name: python
+subcategory: ai
 ---
 
 모델 학습 시 데이터를 단순히 훈련 세트(Train)와 테스트 세트(Test)로 한 번만 분할하여 모델을 검증하면 테스트 데이터에만 과적합되거나 데이터 우연성에 의해 점수가 불완전하게 평가받는 문제가 생길 수 있음. 이를 극복하기 위해 데이터를 여러 개의 그룹(Fold)으로 나누어 번갈아가며 모델을 교차 평가하는 **K-Fold 교차검증(K-Fold Cross Validation)** 기법을 활용함.

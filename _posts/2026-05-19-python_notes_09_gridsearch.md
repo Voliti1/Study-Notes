@@ -4,6 +4,7 @@ date: 2026-05-19
 title: 09. 그리드 서치 (Grid Search)
 author: Voliti
 category_name: python
+subcategory: ai
 ---
 
 머신러닝 모델의 성능을 최적화하기 위해서는 사용자가 직접 설정해 주어야 하는 매개변수인 **하이퍼파라미터(Hyperparameter)**를 적절하게 튜닝해야 함. 이를 수동으로 일일이 변경하며 검증하는 것은 비효율적이므로, 탐색하고자 하는 하이퍼파라미터 후보들의 값을 격자(Grid) 형태로 나열하고 교차검증을 통해 최적의 조합을 자동 탐색하는 **그리드 서치(Grid Search)** 기법을 활용함.
